@@ -1,4 +1,5 @@
-import { usersCollection, sessionsCollection, userSchema } from "../index.js";
+import { userSchema } from "../index.js";
+import { usersCollection, sessionsCollection } from "../database/db.js";
 
 import bcrypt from "bcrypt";
 import { v4 as uuidV4 } from "uuid";
@@ -48,7 +49,9 @@ export async function signIn(req, res) {
 
         await sessionsCollection.insertOne({ token, userId: userExists._id });
 
-        res.send({ token });
+        console.log(userExists.name)
+
+        res.send({ token:token, name: userExists.name});
     } catch (err) {
         res.sendStatus(500);
     }

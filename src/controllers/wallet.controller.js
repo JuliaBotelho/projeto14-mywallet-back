@@ -1,4 +1,6 @@
-import { usersCollection, sessionsCollection, valueSchema, walletCollection } from "../index.js";
+import { valueSchema } from "../index.js";
+import { usersCollection, sessionsCollection, walletCollection } from "../database/db.js";
+import dayjs from "dayjs"
 
 export async function postAmmount(req, res) {
     const body = req.body;
@@ -26,6 +28,7 @@ export async function postAmmount(req, res) {
             email: user.email,
             description: body.description,
             ammount: body.ammount,
+            date: dayjs().format("DD/MM"),
             type: body.type
         });
         res.sendStatus(201);
