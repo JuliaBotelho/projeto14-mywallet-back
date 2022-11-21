@@ -4,6 +4,7 @@ import cors from "cors";
 import Joi from "joi";
 import { MongoClient } from "mongodb";
 import { signUp, signIn } from "./controllers/users.controller.js"
+import { postAmmount, getAmmounts } from "./controllers/wallet.controller.js"
 dotenv.config();
 
 const app = express();
@@ -39,8 +40,8 @@ export const walletCollection = db.collection("wallet");
 
 app.post("/sign-up", signUp);
 app.post("/sign-in", signIn);
-/* app.post("/mywallet", postAmmount);
-app.get("/mywallet", getAmmounts); */
+app.post("/mywallet", postAmmount);
+app.get("/mywallet", getAmmounts); 
 
 
 app.listen(5000, () => console.log("Running in Port 5000"));
